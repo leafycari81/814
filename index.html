@@ -19,12 +19,33 @@
 </head>
 <body>
 <iframe src="app.html" title="814 表現紀錄" allow="fullscreen"></iframe>
+<div id="upd" style="display:none;position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99;background:#c67139;color:#f5ead8;border-radius:999px;padding:13px 22px;font:700 15px/1 system-ui,-apple-system,'Noto Sans TC',sans-serif;box-shadow:0 6px 20px rgba(46,43,37,.28);cursor:pointer">有新版本，點此更新</div>
 <script>
-  if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () {});
+  (function () {
+    if (!('serviceWorker' in navigator) || location.protocol.indexOf('http') !== 0) return;
+    var toast = document.getElementById('upd'), waiting = null;
+    toast.addEventListener('click', function () {
+      if (waiting) waiting.postMessage('skipWaiting');
+      location.reload();
     });
-  }
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!window.__reloaded) { window.__reloaded = true; location.reload(); }
+    });
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').then(function (reg) {
+        function offer(sw) { waiting = sw; toast.style.display = 'block'; }
+        if (reg.waiting && navigator.serviceWorker.controller) offer(reg.waiting);
+        reg.addEventListener('updatefound', function () {
+          var sw = reg.installing;
+          if (!sw) return;
+          sw.addEventListener('statechange', function () {
+            if (sw.state === 'installed' && navigator.serviceWorker.controller) offer(sw);
+          });
+        });
+        setInterval(function () { reg.update().catch(function () {}); }, 60000);
+      }).catch(function () {});
+    });
+  })();
 </script>
 </body>
 </html>
