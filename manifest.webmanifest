@@ -1,0 +1,17 @@
+{
+  "name": "814 表現紀錄",
+  "short_name": "814 表現",
+  "description": "班級優缺點登錄與點數兌換，紀錄只存在本機裝置。",
+  "start_url": ".",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#f5ead8",
+  "theme_color": "#c67139",
+  "lang": "zh-Hant",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

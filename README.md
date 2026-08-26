@@ -1,0 +1,34 @@
+# 814 表現紀錄 — 安裝到 iPad
+
+離線可用的班級優缺點登錄工具。**所有紀錄只存在你的 iPad 上**，不會上傳到任何地方；上網只是為了第一次安裝。
+
+## 一、放到 GitHub Pages
+
+1. 在 GitHub 建一個新的 repository（Public，名字例如 `class814`）。
+2. 把這個資料夾裡的全部檔案上傳到 repo 根目錄（`index.html`、`app.html`、`sw.js`、`manifest.webmanifest`、兩個 `icon-*.png`、`本週家長聯繫單.html`、本說明），檔名不要改。
+   - 網頁介面：repo 頁面 → **Add file → Upload files** → 把檔案拖進去 → Commit。
+   - `app.html` 約 13 MB，屬正常範圍（GitHub 單檔上限 100 MB）。
+3. repo → **Settings → Pages** → Source 選 **Deploy from a branch**、Branch 選 `main` / `(root)` → Save。
+4. 等一兩分鐘，Pages 會給你網址：`https://<你的帳號>.github.io/class814/`
+
+## 二、加到 iPad 主畫面
+
+1. 用 **Safari** 開上面那個網址（一定要 Safari，其他瀏覽器不能安裝）。
+2. 等頁面完全載入（第一次會把整個 App 存進裝置，約十幾秒）。
+3. 分享鈕 → **加入主畫面** → 完成。主畫面會出現磚紅色「814」圖示。
+4. 之後從圖示開啟即可，**不需要網路**。可以開飛航模式測試一次確認。
+
+## 三、日常使用
+
+- 登錄、銷掉、兌換點數都是即時存到裝置，關掉 App 不會消失。
+- 側欄「備份與還原」可以產生備份碼；換 iPad 或重裝前先複製保存，新裝置貼上後按「匯入並覆蓋」。
+- 側欄「一鍵清空」分三段：清空今日、清空本週、全部重置。
+
+## 四、更新版本
+
+換過 `app.html` 後，把 `sw.js` 第二行的 `VERSION` 改成 `v2`（下次 `v3`…），一起上傳。iPad 連上網路開一次 App 就會換成新版。
+
+## 注意
+
+- 不要刪掉 iPad 上的這個主畫面圖示再期待資料還在：移除 App 會連同紀錄一起清掉，先備份。
+- Safari 設定裡的「清除瀏覽資料」也會清掉紀錄，同樣先備份。
