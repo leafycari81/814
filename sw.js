@@ -1,5 +1,5 @@
 // 814 表現紀錄 — 離線快取。改版時把 VERSION 加 1，重新整理後會自動換新。
-const VERSION = 'v30';
+const VERSION = 'v32';
 const CACHE = 'cls814-' + VERSION;
 // HTML 走「網路優先」：一上傳新版就立刻看到；離線時才用快取。
 const DOCS = ['./', './index.html', './app.html', './本週家長聯繫單.html'];
@@ -44,7 +44,7 @@ self.addEventListener('fetch', e => {
   if (isDoc(req)) {
     // 網路優先，成功就順手更新快取；失敗（離線）才回快取
     e.respondWith(
-      fetch(req)
+      fetch(new Request(req.url, { cache: 'reload', credentials: 'same-origin' }))
         .then(res => {
           if (res && res.ok) {
             const copy = res.clone();
