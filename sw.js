@@ -1,8 +1,8 @@
 // 814 表現紀錄 — 離線快取。改版時把 VERSION 加 1，重新整理後會自動換新。
-const VERSION = 'v38';
+const VERSION = 'v40';
 const CACHE = 'cls814-' + VERSION;
 // HTML 走「網路優先」：一上傳新版就立刻看到；離線時才用快取。
-const DOCS = ['./', './index.html', './app.html', './本週家長聯繫單.html'];
+const DOCS = ['./', './index.html', './app.html', './本週家長聯繫單.html', './段考成績單.html'];
 const STATIC = ['./manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
